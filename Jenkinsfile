@@ -8,7 +8,7 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 echo 'Setup Environment..'
-                bat "pip install --upgrade pip"
+                bat "${PYTHON_PATH} -m pip install --upgrade pip"
                 bat "pip install -r requirements.txt"
 
             }
