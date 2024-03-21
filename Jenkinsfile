@@ -9,7 +9,7 @@ pipeline {
             steps {
                 echo 'Setup Environment..'
                 bat "pip install --upgrade pip"
-                bat "${PIP_PATH} install -r requirements.txt"
+                bat "pip install -r requirements.txt"
 
             }
         }
