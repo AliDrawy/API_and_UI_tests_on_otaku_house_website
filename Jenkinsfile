@@ -1,19 +1,24 @@
 pipeline {
     agent any
-
+    environment {
+        PIP_PATH = 'C:\\Program Files\\Python310\\Scripts\\pip.exe'
+        PYTHON_PATH = 'C:\\Program Files\\Python310\\python.exe'
+    }
     stages {
         stage('Setup Environment') {
             steps {
                 echo 'Setup Environment..'
-                bat 'pip install -r requirements.txt'
+                bat '${P} install -r requirements.txt'
 
             }
         }
         stage('Setup Selenium Server HUB') {
             steps {
-                echo 'Setup Selenium HUB..'
-                bat "start /b java -jar selenium-server-4.17.0.jar hub"
-                bat 'ping 127.0.0.1 -n 11 > nul'
+               echo 'Setup Selenium HUB..'
+               bat "start /b java -jar selenium-server-4.17.0.jar hub"
+                        // Delay for 10 seconds
+               bat 'ping 127.0.0.1 -n 11 > nul' // Windows command to sleep for 10 seconds
+
             }
         }
         stage('Setup Selenium Server nodes') {
