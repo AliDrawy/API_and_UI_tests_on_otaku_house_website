@@ -32,7 +32,7 @@ pipeline {
         stage('Test POC ') {
             steps {
                 echo 'Testing..'
-                bat 'python -m unittest ecommerce-django-react-main/test/test_ui_and_api.py'
+                bat 'python -m unittest ecommerce-django-react-main\\test\\test_ui_and_api.py'
 
 
             }
