@@ -8,7 +8,7 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 echo 'Setup Environment..'
-                bat '${P} install -r requirements.txt'
+                bat '${PIP_PATH} install -r requirements.txt'
 
             }
         }
