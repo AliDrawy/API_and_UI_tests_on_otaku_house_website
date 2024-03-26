@@ -19,9 +19,9 @@ jobs:
         run: |
           pip install requests random2 selenium jira pytest pytest-html
 
-#      - name: Install dotnev
-#        run: |
-#                pip install pip install dotenv
+      - name: Install dotnev
+        run: |
+                pip install pip install dotenv
 
       - name: Setup ChromeDriver
         uses: browser-actions/setup-chrome@v1
