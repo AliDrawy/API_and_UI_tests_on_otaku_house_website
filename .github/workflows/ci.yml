@@ -1,5 +1,5 @@
 name: Python Build and Test
-on: [push]
+on: [ push ]
 
 jobs:
   build_and_test:
@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Tests and Generate Report
         run: |
-          pytest test/api_and_ui/test_ui_and_api.py --html=report.html
+          python -m pytest test/api_and_ui/test_ui_and_api.py --html=report.html
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v2
