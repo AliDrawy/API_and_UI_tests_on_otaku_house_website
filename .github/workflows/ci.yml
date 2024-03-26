@@ -1,8 +1,12 @@
 name: Python Build and Test
-on: [ push ]
+on:
+  push:
+    branches: [ main ]
+    pull_request:
+      branches: [ main ]
 
 jobs:
-  build_and_test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,13 +19,18 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install dependencies
-        run: |
-          pip install requests random2 selenium jira pytest pytest-html
+      - name: Start Selenium Server HUB
+        run: nohup java -jar selenium-server-4.17.0.jar hub & sleep 10
+        shell: bash
 
-      - name: Install dotnev
+      - name: Start Selenium Server nodes
+        run: nohup java -jar selenium-server-4.17.0.jar node --port 5555 --selenium-manager true & sleep 10
+        shell: bash
+
+      - name: Install requirements
         run: |
-                pip install pip install dotenv
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
 
       - name: Setup ChromeDriver
         uses: browser-actions/setup-chrome@v1
@@ -33,7 +42,7 @@ jobs:
         with:
           firefox-version: latest
 
-      - name: Run Tests and Generate Report
+      - name: Run Test
         run: |
           python -m pytest test/api_and_ui/test_ui_and_api.py --html=report.html
 

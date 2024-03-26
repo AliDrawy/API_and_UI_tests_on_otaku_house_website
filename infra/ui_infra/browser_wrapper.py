@@ -8,7 +8,7 @@ from jira import JIRA
 import random
 from dotenv import load_dotenv
 
-load_dotenv("../.env")
+load_dotenv()
 
 
 class WebBrowser:
