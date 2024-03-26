@@ -96,7 +96,7 @@ pipeline {
         stage('Publish Report') {
             steps {
                 bat 'powershell Compress-Archive -Path reports/report.html -DestinationPath report.zip -Force'
-                archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
+                archiveArtifacts artifacts: 'report.zi', onlyIfSuccessful: true
             }
         }
     }
