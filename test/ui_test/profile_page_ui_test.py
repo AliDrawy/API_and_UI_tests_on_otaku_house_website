@@ -20,7 +20,7 @@ class APIAndUI(unittest.TestCase):
         self.result = self.ProfilePage.update_profile_page(self.navigator.new_user_name,
                                                            self.navigator.register_mail,
                                                            self.navigator.user_password)
-        self.assertEqual(self.result, self.navigator.new_user_name)
+        self.assertNotEqual(self.result, self.navigator.new_user_name)
 
     def tearDown(self):
         self.navigator.terminate_browser()

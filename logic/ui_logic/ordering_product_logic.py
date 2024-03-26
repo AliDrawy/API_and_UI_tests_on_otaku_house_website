@@ -36,6 +36,7 @@ class OrderingProduct(WebPageBase):
     BUY_BUTTON = (By.XPATH, '//*[@id="submit-button"]')
     SELECT_INPUT = (By.XPATH, '//*[@id="billingAddress.state"]')
     PAID_CONFIRMED = (By.XPATH, '//*[@id="root"]/div/main/div/div/div[1]/div/div[2]/div/text()[1]')
+    ORDER_ID = (By.XPATH, '//*[@id="root"]/div/main/div/h1/text()[2]')
 
     def get_product_page(self):
         product = self.wait_condition.until(EC.element_to_be_clickable(self.PRODUCT))
@@ -103,7 +104,7 @@ class OrderingProduct(WebPageBase):
         el.send_keys(key)
 
     def fill_payment_details(self, visa_number, cvv, postal_code, expires_date, name, street_address, city, mobile,
-                             mail,country):
+                             mail, country):
         self.scroll_down()
         ifram_element = WebDriverWait(self.browser_driver, 10).until(
             EC.visibility_of_element_located(self.IFRAM_1))
@@ -186,4 +187,5 @@ class OrderingProduct(WebPageBase):
         self.scroll_down()
         place_order_btn = self.wait_condition.until(EC.element_to_be_clickable(self.PLACE_ORDER_BTN))
         place_order_btn.click()
+
         return True
