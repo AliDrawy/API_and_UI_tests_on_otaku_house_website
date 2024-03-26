@@ -81,6 +81,11 @@ pipeline {
                 }
             }
         }
+        stage('Check Reports Directory') {
+            steps {
+                bat 'dir reports'
+            }
+        }
          stage('Publish Report') {
              steps {
 //                 bat 'powershell Compress-Archive -Path reports/* -DestinationPath report.zip -Force'
