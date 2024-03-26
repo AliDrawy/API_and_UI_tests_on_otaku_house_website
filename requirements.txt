@@ -4,10 +4,6 @@ jira~=3.6.0
 python-dotenv~=1.0.1
 utils~=1.0.2
 
-jupyter~=1.0.0
-pip~=22.0.4
-attrs~=21.4.0
-cryptography~=40.0.2
-Pillow~=9.4.0
-tornado~=6.1
-Jinja2~=3.0.3
+pathlib~=1.0.1
+pytest~=7.1.2
+parameterized~=0.9.0
