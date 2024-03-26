@@ -1,17 +1,18 @@
 pipeline {
     agent any
+
     environment {
         // Environment variables setup
         JIRA_API = credentials('JIRA_TOKEN')
         TOKEN = credentials('WEBSITE_TOKEN')
         MAIL = credentials('MAIL_TOKEN')
     }
+
     stages {
         stage('Setup Environment') {
             steps {
                 echo 'Setting up Python environment...'
                 bat 'C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python312\\python.exe -m venv venv'
-//                 bat 'venv\\Scripts\\python -m pip install --upgrade pip'
                 bat 'venv\\Scripts\\pip.exe install -r requirements.txt'
             }
             post {
@@ -23,6 +24,7 @@ pipeline {
                 }
             }
         }
+
         stage('Setup Selenium Server HUB') {
             steps {
                 echo 'Setting up Selenium server HUB...'
@@ -38,6 +40,7 @@ pipeline {
                 }
             }
         }
+
         stage('Setup Selenium Server nodes') {
             steps {
                 echo 'Setting up Selenium server nodes...'
@@ -53,7 +56,8 @@ pipeline {
                 }
             }
         }
-        stage(' Running Tests') {
+
+        stage('Running Tests') {
             steps {
                 echo 'Testing..'
                 bat "venv\\Scripts\\python.exe test_runner_ui_api_pytest.py"
@@ -67,6 +71,7 @@ pipeline {
                 }
             }
         }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying..'
@@ -81,20 +86,21 @@ pipeline {
                 }
             }
         }
+
         stage('Check Reports Directory') {
             steps {
                 bat 'dir reports'
             }
         }
-         stage('Publish Report') {
-             steps {
-//                 bat 'powershell Compress-Archive -Path reports/* -DestinationPath report.zip -Force'
-//                 archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
-                    bat 'powershell Compress-Archive -Path reports/report.html -DestinationPath report.zip -Force'
-                    archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
+
+        stage('Publish Report') {
+            steps {
+                bat 'powershell Compress-Archive -Path reports/report.html -DestinationPath report.zip -Force'
+                archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
+            }
+        }
     }
-}
-    }
+
     post {
         always {
             echo 'Cleaning up...'
