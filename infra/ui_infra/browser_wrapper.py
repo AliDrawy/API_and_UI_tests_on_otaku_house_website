@@ -50,7 +50,7 @@ class WebBrowser:
     def launch_browser(self, browser):
         self.web_driver = self.get_driver(browser)
         self.open_website(f'{self.url}login')
-        self.web_driver.maximize_window()#move to infra
+        self.web_driver.maximize_window()  # move to infra
         return self.web_driver
 
     def wait(self, timeout=50):
@@ -94,10 +94,10 @@ class WebBrowser:
             options = webdriver.FirefoxOptions()
         elif browser_type.lower() == 'edge':
             options = webdriver.EdgeOptions()
-        # options.add_argument("--headless")
-        # options.add_argument("--no-sandbox")
-        # options.add_argument("--disable-dev-shm-usage")
-        options.add_argument(f'--platformName=windows')
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-dev-shm-usage")
+        # options.add_argument(f'--platformName=windows')
         return options
 
     def get_browsers(self):
