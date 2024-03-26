@@ -2,8 +2,9 @@ pipeline {
     agent any
     environment {
         // Environment variables setup
-        API_MONDAY = credentials('token_monday')
-        JIRA_TOKEN = credentials('token_jira')
+        JIRA_API = credentials('JIRA_TOKEN')
+        TOKEN = credentials('WEBSITE_TOKEN')
+        MAIL = credentials('MAIL_TOKEN')
     }
     stages {
         stage('Setup Environment') {
