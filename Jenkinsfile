@@ -10,9 +10,9 @@ pipeline {
         stage('Setup Environment') {
             steps {
                 echo 'Setting up Python environment...'
-                bat 'python -m venv venv'
-                bat 'venv\\Scripts\\python -m pip install --upgrade pip'
-                bat 'venv\\Scripts\\pip.exe install -r requirements.txt'
+//                 bat 'python -m venv venv'
+                bat 'python -m pip install --upgrade pip'
+                bat 'pip install -r requirements.txt'
             }
             post {
                 success {
@@ -56,7 +56,7 @@ pipeline {
         stage(' Running Tests') {
             steps {
                 echo 'Testing..'
-                bat "venv\\Scripts\\python.exe test_runner_ui_api_pytest.py"
+                bat "python test_runner_ui_api_pytest.py"
             }
             post {
                 success {
