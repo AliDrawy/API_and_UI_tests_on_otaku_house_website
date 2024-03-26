@@ -24,12 +24,12 @@ pipeline {
                 }
             }
         }
-        stage('Report') {
-            steps {
-                bat '7z a report.zip reports/report.html'
-                archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
-            }
-        }
+//         stage('Report') {
+//             steps {
+//                 bat '7z a report.zip reports/report.html'
+//                 archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
+//             }
+//         }
         stage('Setup Selenium Server HUB') {
             steps {
                 echo 'Setting up Selenium server HUB...'
