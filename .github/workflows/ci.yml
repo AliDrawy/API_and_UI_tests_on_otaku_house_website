@@ -44,7 +44,7 @@ jobs:
 
       - name: Run Test
         run: |
-          python -m pytest test/api_and_ui/test_ui_and_api.py --html=report.html
+          python -m unittest test/api_and_ui/test_ui_and_api.py --html=report.html
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v2
