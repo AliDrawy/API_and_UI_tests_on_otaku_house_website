@@ -1,5 +1,21 @@
 {
   "url": "http://127.0.0.1:8000/#/",
-  "jira_url": "https://alibd2024.atlassian.net"
-
+  "jira_url": "https://alibd2024.atlassian.net",
+  "login_mail": "drawyali1000@gmail.com",
+  "login_password": "valid_password",
+  "invalid_login_mail": "invalidmail@gmail.com",
+  "invalid_login_password": "invalid_password",
+  "register_mail": "registermail3@gmail.com",
+  "user_name": "ali",
+  "new_user_name": "shaker",
+  "keyword_for_search": "DRAGON BALL SUPER - SON GOKU & VEGETA FIGURE",
+  "keyword_for_cart": "DEMON SLAYER - 300 PIECE TANJIRO AND NEZUKO ENSKY PUZZLE",
+  "city": "Jerusalem",
+  "address": "Q",
+  "postal_code": "35004",
+  "country": "Alabama",
+  "phone": "+1-212-456-7890",
+  "visa": "4263982640269299",
+  "cvv": "837",
+  "ex_date": "0226"
 }

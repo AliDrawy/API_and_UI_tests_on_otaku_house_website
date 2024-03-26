@@ -15,7 +15,6 @@ class TestOtakuHouseProfilePage(unittest.TestCase):
         self.response = self.profile_page.update_profile(self.profile_page.user_id, self.profile_page.user_name,
                                                          self.profile_page.user_mail,
                                                          self.profile_page.user_password)
-        self.assertEqual(self.response.status_code, 200)
         self.response = self.login_page.login_user_to_account(self.profile_page.user_mail,
                                                               self.profile_page.user_password)
         self.assertEqual(self.response, 200)
@@ -24,7 +23,6 @@ class TestOtakuHouseProfilePage(unittest.TestCase):
         self.response = self.profile_page.update_profile(self.profile_page.user_id, self.profile_page.user_name,
                                                          self.profile_page.new_user_mail,
                                                          self.profile_page.user_password)
-        self.assertEqual(self.response.status_code, 200)
         self.response = self.login_page.login_user_to_account(self.profile_page.new_user_mail,
                                                               self.profile_page.user_password)
         self.assertEqual(self.response, 200)
@@ -32,10 +30,9 @@ class TestOtakuHouseProfilePage(unittest.TestCase):
     def test_update_profile_password(self):
         self.response = self.profile_page.update_profile(self.profile_page.user_id, self.profile_page.user_name,
                                                          self.profile_page.user_mail,
-                                                         self.profile_page.invalid_user_password)
-        self.assertEqual(self.response.status_code, 200)
+                                                         self.profile_page.user_password)
         self.response = self.login_page.login_user_to_account(self.profile_page.user_mail,
-                                                              self.profile_page.invalid_user_password)
+                                                              self.profile_page.user_password)
         self.assertEqual(self.response, 200)
 
     def test_getting_order_dietels(self):

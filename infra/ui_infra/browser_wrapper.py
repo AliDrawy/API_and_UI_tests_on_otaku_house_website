@@ -8,7 +8,7 @@ from jira import JIRA
 import random
 from dotenv import load_dotenv
 
-load_dotenv("..\\..\\infra\\api_infra\\.env")
+load_dotenv("../.env")
 
 
 class WebBrowser:
@@ -22,6 +22,23 @@ class WebBrowser:
         self.jira_url = self.read_config_data("ui_config.json")['jira_url']
         self.jira_mail = os.getenv("MAIL")
         self.auth_jira = JIRA(basic_auth=(self.jira_mail, self.jira_api), options={'server': self.jira_url})
+        self.user_name = self.read_config_data("ui_config.json")['user_name']
+        self.new_user_name = self.read_config_data("ui_config.json")['new_user_name']
+        self.user_mail = self.read_config_data("ui_config.json")['login_mail']
+        self.user_password = self.read_config_data("ui_config.json")['login_password']
+        self.invalid_mail = self.read_config_data("ui_config.json")['invalid_login_mail']
+        self.invalid_user_password = self.read_config_data("ui_config.json")['invalid_login_password']
+        self.register_mail = self.read_config_data("ui_config.json")['register_mail']
+        self.keyword = self.read_config_data("ui_config.json")['keyword_for_search']
+        self.keyword_for_cart = self.read_config_data("ui_config.json")['keyword_for_cart']
+        self.city = self.read_config_data("ui_config.json")['city']
+        self.visa = self.read_config_data("ui_config.json")['visa']
+        self.cvv = self.read_config_data("ui_config.json")['cvv']
+        self.phone = self.read_config_data("ui_config.json")['phone']
+        self.country = self.read_config_data("ui_config.json")['country']
+        self.postal_code = self.read_config_data("ui_config.json")['postal_code']
+        self.address = self.read_config_data("ui_config.json")['address']
+        self.ex_date = self.read_config_data("ui_config.json")['ex_date']
 
     def read_config_data(self, file):
         here = dirname(__file__)
@@ -33,6 +50,7 @@ class WebBrowser:
     def launch_browser(self, browser):
         self.web_driver = self.get_driver(browser)
         self.open_website(f'{self.url}login')
+        self.web_driver.maximize_window()#move to infra
         return self.web_driver
 
     def wait(self, timeout=50):

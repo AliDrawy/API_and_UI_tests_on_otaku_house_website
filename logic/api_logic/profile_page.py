@@ -8,9 +8,9 @@ class OtakuHouseProfilePage(OtakuHouseAPI):
 
     def update_profile(self, id, name, mail, password):
         self.json_data = {"id": id, "name": name, "email": mail, "password": password}
-        self.response = self.request.put(f'{self.url[:-2]}api/users/profile/update/', json=self.json_data,
+        self.response = self.request.put(f'{self.url}api/users/profile/update/', json=self.json_data,
                                          headers=self.headers)
         return self.response
 
     def get_order_dietels(self, order_id):
-        return self.request.get(f'{self.url[:-2]}api/orders/{order_id}/', headers=self.headers)
+        return self.request.get(f'{self.url}api/orders/{order_id}/', headers=self.headers)

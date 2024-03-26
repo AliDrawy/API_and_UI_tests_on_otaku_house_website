@@ -5,7 +5,7 @@ from jira import JIRA
 import os
 import random
 from dotenv import load_dotenv
-load_dotenv(".env")
+load_dotenv("../../.env")
 
 class OtakuHouseAPI:
     def __init__(self):
