@@ -100,11 +100,11 @@ pipeline {
 
         stage('Publish Report') {
             steps {
-//                 bat 'powershell Compress-Archive -Path reports/report.html -DestinationPath report.zip -Force'
-//                 archiveArtifacts artifacts: 'report.zi', onlyIfSuccessful: true
-                    bat 'Compress-Archive -Path "source_file_or_directory" -DestinationPath "destination.zip"'
-                    bat 'cd reports && zip -r ../report.zip report.html'
-                    archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
+                sh 'powershell Compress-Archive -Path reports/report.html -DestinationPath report.zip -Force'
+                archiveArtifacts artifacts: 'report.zi', onlyIfSuccessful: true
+//                     bat 'Compress-Archive -Path "source_file_or_directory" -DestinationPath "destination.zip"'
+//                     bat 'cd reports && zip -r ../report.zip report.html'
+//                     archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
             }
         }
     }
