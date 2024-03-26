@@ -91,7 +91,7 @@ pipeline {
 //                 bat 'powershell Compress-Archive -Path reports/* -DestinationPath report.zip -Force'
 //                 archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
                     bat 'powershell Compress-Archive -Path reports/report.html -DestinationPath report.zip -Force'
-                    archiveArtifacts artifacts: 'reports/report.html', onlyIfSuccessful: true
+                    archiveArtifacts artifacts: 'reports/report.zip', onlyIfSuccessful: true
     }
 }
     }
