@@ -59,7 +59,7 @@ pipeline {
         stage('Running Tests') {
             steps {
                 echo 'Testing..'
-                bat "venv\\Scripts\\python.exe test_runner_ui_api_pytest.py"
+                bat "venv\\Scripts\\python.exe test_runner_ui_and_api.py"
             }
             post {
                 success {
