@@ -94,7 +94,7 @@ pipeline {
         stage('Publish Report') {
             steps {
                 echo 'Deploying..'
-                bat 'powershell Compress-Archive -Path C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\otaku-house-jenkins\\reports\\report.html -DestinationPath report.zip -Force'
+                bat 'powershell Compress-Archive -Path reports\\report.html -DestinationPath report.zip'
                 archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
 //                     bat 'Compress-Archive -Path "source_file_or_directory" -DestinationPath "destination.zip"'
 //                     bat 'cd reports && zip -r ../report.zip report.html'
