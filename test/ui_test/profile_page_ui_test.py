@@ -14,13 +14,19 @@ class APIAndUI(unittest.TestCase):
                                                          self.navigator.user_password)
         self.result = None
         self.ProfilePage = ProfilePage(self.browser_driver, self.wait_tool)
+        self.error_msg = None
 
     def test_update_profile_page(self):
         self.result = self.ProfilePage.navigate_to_profile_page()
         self.result = self.ProfilePage.update_profile_page(self.navigator.new_user_name,
                                                            self.navigator.register_mail,
                                                            self.navigator.user_password)
-        self.assertNotEqual(self.result, self.navigator.new_user_name)
+        self.error_msg = "the profile details not updated successfully"
+        self.assertEqual(self.result, self.navigator.new_user_name, self.error_msg)
 
     def tearDown(self):
+        if self.result != self.navigator.new_user_name:
+            print(self.navigator.create_issue("Test update profile page via UI",
+                                              self.error_msg, 'EP'))
+
         self.navigator.terminate_browser()

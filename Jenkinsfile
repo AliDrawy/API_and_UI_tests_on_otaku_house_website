@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        // Environment variables setup
         JIRA_API = credentials('JIRA_TOKEN')
         TOKEN = credentials('WEBSITE_TOKEN')
         MAIL = credentials('MAIL_TOKEN')
@@ -17,19 +16,14 @@ pipeline {
             }
             post {
                 success {
-                    slackSend (color: 'good', message: "SUCCESS: Setup Environment stage completed successfully.")
+                    slackSend (color: 'good', message: "SUCCESS: Setup Environment success.")
                 }
                 failure {
-                    slackSend (color: 'danger', message: "FAILURE: Setup Environment stage failed.")
+                    slackSend (color: 'danger', message: "FAILURE: Setup Environment failed.")
                 }
             }
         }
-//         stage('Report') {
-//             steps {
-//                 bat '7z a report.zip reports/report.html'
-//                 archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
-//             }
-//         }
+
         stage('Setup Selenium Server HUB') {
             steps {
                 echo 'Setting up Selenium server HUB...'
@@ -38,10 +32,10 @@ pipeline {
             }
             post {
                 success {
-                    slackSend (color: 'good', message: "SUCCESS: Setup Selenium Server HUB stage completed successfully.")
+                    slackSend (color: 'good', message: "SUCCESS: Setup Selenium Server HUB success.")
                 }
                 failure {
-                    slackSend (color: 'danger', message: "FAILURE: Setup Selenium Server HUB stage failed.")
+                    slackSend (color: 'danger', message: "FAILURE: Setup Selenium Server HUB failed.")
                 }
             }
         }
@@ -54,10 +48,10 @@ pipeline {
             }
             post {
                 success {
-                    slackSend (color: 'good', message: "SUCCESS: Setup Selenium Server nodes stage completed successfully.")
+                    slackSend (color: 'good', message: "SUCCESS: Setup Selenium Server nodes success.")
                 }
                 failure {
-                    slackSend (color: 'danger', message: "FAILURE: Setup Selenium Server nodes stage failed.")
+                    slackSend (color: 'danger', message: "FAILURE: Setup Selenium Server nodes failed.")
                 }
             }
         }
@@ -69,10 +63,10 @@ pipeline {
             }
             post {
                 success {
-                    slackSend (color: 'good', message: "SUCCESS: Running Tests stage completed successfully.")
+                    slackSend (color: 'good', message: "SUCCESS: Running Tests success.")
                 }
                 failure {
-                    slackSend (color: 'danger', message: "FAILURE: Running Tests stage failed.")
+                    slackSend (color: 'danger', message: "FAILURE: Running Tests failed.")
                 }
             }
         }
@@ -80,14 +74,13 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying..'
-                // Your deployment steps here
             }
             post {
                 success {
-                    slackSend (color: 'good', message: "SUCCESS: Deploy stage completed successfully.")
+                    slackSend (color: 'good', message: "SUCCESS: Deploy success.")
                 }
                 failure {
-                    slackSend (color: 'danger', message: "FAILURE: Deploy stage failed.")
+                    slackSend (color: 'danger', message: "FAILURE: Deploy failed.")
                 }
             }
         }
@@ -100,7 +93,7 @@ pipeline {
 
         stage('Publish Report') {
             steps {
-                sh 'powershell Compress-Archive -Path reports/report.html -DestinationPath report.zip -Force'
+                bat 'powershell Compress-Archive -Path reports/report.html -DestinationPath report.zip -Force'
                 archiveArtifacts artifacts: 'report.zi', onlyIfSuccessful: true
 //                     bat 'Compress-Archive -Path "source_file_or_directory" -DestinationPath "destination.zip"'
 //                     bat 'cd reports && zip -r ../report.zip report.html'
@@ -112,12 +105,11 @@ pipeline {
     post {
         always {
             echo 'Cleaning up...'
-            // General cleanup notification
             slackSend (color: 'warning', message: "NOTIFICATION: Cleaning up resources...")
         }
         success {
             echo 'Build succeeded.'
-            slackSend (color: 'good', message: "SUCCESS: Build completed successfully.")
+            slackSend (color: 'good', message: "SUCCESS: Build success.")
         }
         failure {
             echo 'Build failed.'
