@@ -59,11 +59,11 @@ pipeline {
         stage('Running Tests') {
             steps {
 
-                   bat "venv\\Scripts\\activate"
-                   bat "venv\\Scripts\\python.exe -m pytest test_runner_ui_and_api.py --html=C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\otaku-house-jenkins\\reports\\report.html"
+//                    bat "venv\\Scripts\\activate"
+//                    bat "venv\\Scripts\\python.exe -m pytest test_runner_ui_and_api.py --html=C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\otaku-house-jenkins\\reports\\report.html"
 
-//                 echo 'Testing..'
-//                 bat "venv\\Scripts\\python.exe -m pytest test_runner_ui_and_api.py"
+                echo 'Testing..'
+                bat "venv\\Scripts\\python.exe -m pytest test_runner_ui_and_api.py"
             }
             post {
                 success {
