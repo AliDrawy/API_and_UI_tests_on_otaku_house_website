@@ -4,20 +4,19 @@ import subprocess
 
 def run_pytest(parallel=False):
 
-    ui_tests_path = "test/api_and_ui"
+    ui_tests_path = "test/api_and_ui/test_ui_and_api.py"
     reports_dir = "reports"
     os.makedirs(reports_dir, exist_ok=True)
 
     python_path = os.path.join("venv", "Scripts", "python.exe")
+    html_report = os.path.join(reports_dir, "report.html")
 
     # Base command using the virtual environment's Python
-    base_cmd = [python_path, "-m", "pytest", ui_tests_path]
-
-    html_report = os.path.join(reports_dir, "report.html")
+    base_cmd = [python_path, "-m", "pytest", ui_tests_path, f"--html={html_report}"]
     print(f"tzahi print: {html_report}")
 
     if parallel:
-        parallel_cmd = base_cmd + ["-n", "3", "-m", "not serial", f"--html={html_report}"]
+        parallel_cmd = base_cmd #+ ["-n", "3", "-m", "not serial", f"--html={html_report}"]
         try:
             subprocess.run(parallel_cmd, check=True)
         except subprocess.CalledProcessError as e:
@@ -25,7 +24,7 @@ def run_pytest(parallel=False):
 
     try:
         serial_html_report = os.path.join(reports_dir, "report_serial.html")
-        serial_cmd = base_cmd + ["-m", "serial", f"--html={serial_html_report}"]
+        serial_cmd = base_cmd #+ ["-m", "serial", f"--html={serial_html_report}"]
         subprocess.run(serial_cmd, check=True)
     except subprocess.CalledProcessError as e:
         if e.returncode == 5:  # No tests were collected
@@ -33,7 +32,7 @@ def run_pytest(parallel=False):
         else:
             print(e.returncode)
     else:
-        non_parallel_cmd = base_cmd + [f"--html={html_report}"]
+        non_parallel_cmd = base_cmd #+ [f"--html={html_report}"]
         try:
             subprocess.run(non_parallel_cmd, check=True)
         except subprocess.CalledProcessError as e:
