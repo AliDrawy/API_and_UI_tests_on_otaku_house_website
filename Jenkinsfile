@@ -58,12 +58,8 @@ pipeline {
 
         stage('Running Tests') {
             steps {
-
-//                    bat "venv\\Scripts\\activate"
-//                    bat "venv\\Scripts\\python.exe -m pytest test_runner_ui_and_api.py --html=C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\otaku-house-jenkins\\reports\\report.html"
-
                 echo 'Testing..'
-                bat "venv\\Scripts\\python.exe -m pytest test_runner_ui_and_api.py"
+                bat "venv\\Scripts\\python.exe test_runner_ui_and_api.py"
             }
             post {
                 success {
@@ -100,9 +96,6 @@ pipeline {
                 echo 'Deploying..'
                 bat 'powershell Compress-Archive -Path reports\\report.html -DestinationPath report.zip'
                 archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
-//                     bat 'Compress-Archive -Path "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\otaku-house-jenkins\\reports" -DestinationPath "report.zip"'
-//                     bat 'cd reports && zip -r ../report.zip report.html'
-//                     archiveArtifacts artifacts: 'report.zip', onlyIfSuccessful: true
             }
         }
     }

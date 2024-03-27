@@ -2,18 +2,17 @@ import os
 import subprocess
 
 
-def test_run_pytest(parallel=False):
 
+def run_pytest(parallel=False):
+    # Load configuration
     ui_tests_path = "test/api_and_ui"
     reports_dir = "reports"
     os.makedirs(reports_dir, exist_ok=True)
 
-    python_path = os.path.join("venv", "Scripts", "python.exe")
-    html_report = os.path.join(reports_dir, "report.html")
-
     # Base command using the virtual environment's Python
-    base_cmd = [python_path, "-m", "pytest", ui_tests_path, f"--html={html_report}"]
-    print(f"tzahi print: {html_report}")
+    base_cmd = ["cd  C:\\Users\\lenovo\\AppData\\Local\\Programs\\Python\\Python312\\python.exe", "-m", "pytest", ui_tests_path]
+
+    html_report = os.path.join(reports_dir, "report.html")
 
     if parallel:
         parallel_cmd = base_cmd + ["-n", "3", "-m", "not serial", f"--html={html_report}"]
@@ -40,4 +39,4 @@ def test_run_pytest(parallel=False):
 
 
 if __name__ == "__main__":
-    test_run_pytest(True)
+    run_pytest(parallel=False)
