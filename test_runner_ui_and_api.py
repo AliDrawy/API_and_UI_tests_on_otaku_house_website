@@ -5,7 +5,7 @@ import subprocess
 def run_pytest(parallel=False):
 
     ui_tests_path = "test/api_and_ui"
-    reports_dir = "reports\\"
+    reports_dir = "reports"
     os.makedirs(reports_dir, exist_ok=True)
 
     python_path = os.path.join("venv", "Scripts", "python.exe")
@@ -14,6 +14,7 @@ def run_pytest(parallel=False):
     base_cmd = [python_path, "-m", "pytest", ui_tests_path]
 
     html_report = os.path.join(reports_dir, "report.html")
+    print(f"tzahi print: {html_report}")
 
     if parallel:
         parallel_cmd = base_cmd + ["-n", "3", "-m", "not serial", f"--html={html_report}"]
