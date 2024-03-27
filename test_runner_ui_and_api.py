@@ -12,7 +12,7 @@ def run_pytest(parallel=False):
     html_report = os.path.join(reports_dir, "report.html")
 
     # Base command using the virtual environment's Python
-    base_cmd = [python_path, "-m", "pytest", ui_tests_path, f"--html={html_report}"]
+    base_cmd = f"{python_path} -m pytest {ui_tests_path} --html={html_report}"
     print(f"tzahi print: {html_report}")
 
     if parallel:
