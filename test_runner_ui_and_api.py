@@ -5,7 +5,7 @@ import subprocess
 def run_pytest(parallel=False):
 
     ui_tests_path = "test/api_and_ui"
-    reports_dir = "reports"
+    reports_dir = "reports\\"
     os.makedirs(reports_dir, exist_ok=True)
 
     python_path = os.path.join("venv", "Scripts", "python.exe")
